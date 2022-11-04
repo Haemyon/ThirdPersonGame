@@ -4,7 +4,6 @@
 #include "99_Widget/00_Player/PlayerProgressWidget.h"
 
 #include "00_Character/99_Component/StatusComponent.h"
-
 #include "Components/ProgressBar.h"
 
 void UPlayerProgressWidget::UpdateProgressHP(UStatusComponent* statsComp)

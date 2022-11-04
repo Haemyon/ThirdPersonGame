@@ -17,4 +17,10 @@ class THIRDPERSONGAME_API UMainWidget : public UUserWidget
 protected:
 	UPROPERTY()
 		class UPlayerProgressWidget* UMG_PlayerProgress;
+
+public:
+	UFUNCTION()
+		void UpdateHPPercent(class UStatusComponent* StatComp);
+	UFUNCTION()
+		void UpdateSPPercent(class UStatusComponent* StatComp);
 };

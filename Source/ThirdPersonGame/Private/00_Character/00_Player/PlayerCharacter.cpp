@@ -2,6 +2,10 @@
 
 
 #include "00_Character/00_Player/PlayerCharacter.h"
+
+#include "00_Character/00_Player/00_Controller/MainPlayerController.h"
+#include "99_Widget/00_Player/MainWidget.h"
+
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -92,8 +96,12 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	PlayerInputComponent->BindAction("Run", IE_Pressed, this, &APlayerCharacter::Run);
+	PlayerInputComponent->BindAction("Run", IE_Released, this, &APlayerCharacter::StopRun);
+
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerCharacter::MoveRight);
+
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
@@ -103,4 +111,16 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &APlayerCharacter::LookUpAtRate);
 
+}
+
+void APlayerCharacter::Run()
+{
+}
+
+void APlayerCharacter::StopRun()
+{
+}
+
+void APlayerCharacter::SetActionState(EActionState newState)
+{
 }

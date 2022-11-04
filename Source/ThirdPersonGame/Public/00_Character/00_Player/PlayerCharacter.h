@@ -61,4 +61,9 @@ public:
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
+	void Run();
+	void StopRun();
+
+	virtual void SetActionState(EActionState newState) override;
+
 };
