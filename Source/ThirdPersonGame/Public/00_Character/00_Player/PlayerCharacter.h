@@ -32,6 +32,10 @@ public:
 		float BaseLookUpRate;
 
 protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		class UChildActorComponent* WeaponActorComponent;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		class UChildActorComponent* ShieldActorComponent;
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
@@ -64,6 +68,17 @@ public:
 	void Run();
 	void StopRun();
 
+	void Roll();
+
+	void Attack();
+	void StopAttack();
+
 	virtual void SetActionState(EActionState newState) override;
 
+	UPROPERTY(EditAnywhere)
+		class UAnimMontage* AttackMontage;
+	UPROPERTY(EditAnywhere)
+		class UAnimMontage* RollMontage;
+
+	virtual void Jump() override;
 };

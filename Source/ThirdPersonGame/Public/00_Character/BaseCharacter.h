@@ -17,7 +17,8 @@ enum class EActionState : uint8
 	NORMAL,
 	RUN,
 	ROLL,
-	ATTACK
+	ATTACK,
+	JUMP
 };
 
 UCLASS()
