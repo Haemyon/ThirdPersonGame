@@ -38,6 +38,11 @@ public:
 	float GetSP() { return SP; }
 	float GetMaxSP() { return MaxSP; }
 
+	UFUNCTION(BlueprintCallable)
+		void AddSP(float Value);
+
+	bool CheckSP(float Value);
+
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 		

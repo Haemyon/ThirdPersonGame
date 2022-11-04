@@ -59,5 +59,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	EActionState GetActionState() { return ActionState; }
+
 	UStatusComponent* GetStatusComponent() { return StatusComponent; }
 };
