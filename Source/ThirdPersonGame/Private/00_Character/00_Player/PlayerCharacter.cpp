@@ -152,6 +152,7 @@ void APlayerCharacter::Roll()
 
 void APlayerCharacter::Attack()
 {
+	bPressAttack = true;
 	if (GetCharacterMovement()->IsFalling())
 	{
 		return;
@@ -165,6 +166,7 @@ void APlayerCharacter::Attack()
 
 void APlayerCharacter::StopAttack()
 {
+	bPressAttack = false;
 }
 
 void APlayerCharacter::SetActionState(EActionState newState)
@@ -187,17 +189,12 @@ void APlayerCharacter::SetActionState(EActionState newState)
 		FTimerDelegate rollTimerDel = FTimerDelegate::CreateUObject(this, &APlayerCharacter::SetActionState, EActionState::NORMAL);
 
 		GetWorldTimerManager().SetTimer(rollTimerHandle, rollTimerDel, time, false);
+		SetActionState(EActionState::NORMAL);
 	}
 		break;
 	case EActionState::ATTACK:
 	{
-		//배속이 적용 된 시간이 리턴 됨.
-		float time = GetMesh()->GetAnimInstance()->Montage_Play(AttackMontage, 1.f, EMontagePlayReturnType::Duration);
-
-		FTimerHandle attackTimerHandle;
-		FTimerDelegate attackTimerDel = FTimerDelegate::CreateUObject(this, &APlayerCharacter::SetActionState, EActionState::NORMAL);
-
-		GetWorldTimerManager().SetTimer(attackTimerHandle, attackTimerDel, time, false);
+		GetMesh()->GetAnimInstance()->Montage_Play(AttackMontage, 1.f, EMontagePlayReturnType::Duration);
 	}
 		break;
 	case EActionState::JUMP:
