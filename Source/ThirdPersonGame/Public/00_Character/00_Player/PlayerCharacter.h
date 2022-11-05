@@ -70,6 +70,7 @@ public:
 
 	void Roll();
 
+	bool bPressAttack = false;
 	void Attack();
 	void StopAttack();
 
