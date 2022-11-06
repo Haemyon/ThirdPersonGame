@@ -37,6 +37,13 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		class UChildActorComponent* ShieldActorComponent;
 
+public:
+	UChildActorComponent* GetWeaponComponent() { return WeaponActorComponent; }
+
+	UPROPERTY(EditAnywhere)
+		class UParticleSystem* HitParticle;
+
+protected:
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
 
