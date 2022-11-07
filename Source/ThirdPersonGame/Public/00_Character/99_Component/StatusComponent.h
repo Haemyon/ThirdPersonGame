@@ -43,6 +43,10 @@ public:
 
 	bool CheckSP(float Value);
 
+	UFUNCTION(BlueprintCallable)
+		void AddHP(float Value);
+
+
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 		

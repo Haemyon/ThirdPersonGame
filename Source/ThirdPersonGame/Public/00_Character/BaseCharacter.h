@@ -63,4 +63,13 @@ public:
 	EActionState GetActionState() { return ActionState; }
 
 	UStatusComponent* GetStatusComponent() { return StatusComponent; }
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="DamageAmount">피해량</param>
+	/// <param name="DamageEvent">피해에 대한 필요한 정보를 저장하는 구조체</param>
+	/// <param name="EventInstingator">이 대상에게 피해를 준 컨트롤러</param>
+	/// <param name="DamageCauser">이 대상에게 피해를 준 물체</param>
+	/// <returns>최종 대미지</returns>
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 };

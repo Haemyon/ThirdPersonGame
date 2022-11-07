@@ -38,6 +38,12 @@ bool UStatusComponent::CheckSP(float Value)
 	return SP >= Value;
 }
 
+void UStatusComponent::AddHP(float Value)
+{
+	HP = FMath::Clamp(HP + Value, 0.f, MaxHP);
+	GetOwner<ABaseCharacter>()->OnChangedHP.Broadcast(this);
+}
+
 // Called every frame
 void UStatusComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {

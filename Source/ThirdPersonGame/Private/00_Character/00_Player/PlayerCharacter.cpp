@@ -6,6 +6,7 @@
 #include "00_Character/00_Player/00_Controller/MainPlayerController.h"
 #include "99_Widget/00_Player/MainWidget.h"
 #include "00_Character/99_Component/StatusComponent.h"
+#include "01_Item/00_Equipable/Weapon_Spawn.h"
 
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -53,6 +54,16 @@ APlayerCharacter::APlayerCharacter() {
 	ShieldActorComponent->SetupAttachment(GetMesh(), "hand_lSocket");
 
 
+}
+
+AWeapon_Spawn* APlayerCharacter::GetWeapon()
+{
+	if (WeaponActorComponent->GetChildActor() == nullptr)
+	{
+		return nullptr;
+	}
+
+	return Cast<AWeapon_Spawn>(WeaponActorComponent->GetChildActor());
 }
 
 void APlayerCharacter::MoveForward(float Value)

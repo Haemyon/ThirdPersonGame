@@ -27,3 +27,13 @@ void ABaseCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
+
+float ABaseCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	//1. DamageAmount만큼 체력을 깎음.
+	StatusComponent->AddHP((-1) * DamageAmount);
+	//2. 남은 체력을 로그로 찍음.
+	UE_LOG(LogTemp, Log, TEXT("HP : %f"), StatusComponent->GetHP());
+
+	return Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+}
