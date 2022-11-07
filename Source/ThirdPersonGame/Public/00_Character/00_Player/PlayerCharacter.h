@@ -40,8 +40,10 @@ protected:
 public:
 	UChildActorComponent* GetWeaponComponent() { return WeaponActorComponent; }
 
+	class AWeapon_Spawn* GetWeapon();
+
 	UPROPERTY(EditAnywhere)
-		class UParticleSystem* HitParticle;
+		class UNiagaraSystem* HitParticle;
 
 protected:
 	/** Called for forwards/backward input */

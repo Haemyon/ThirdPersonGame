@@ -9,6 +9,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Components/ChildActorComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Kismet/GameplayStatics.h"
 
 void UAttackNotifyState::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
@@ -16,12 +17,20 @@ void UAttackNotifyState::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequ
 	Super::NotifyBegin(MeshComp, Animation, TotalDuration);
 
 	Owner = MeshComp->GetOwner<APlayerCharacter>();
+	if (Owner != nullptr)
+	{
+		if (Owner->IsA<APlayerCharacter>())
+		{
+			auto Weapon = Cast<APlayerCharacter>(Owner)->GetWeapon();
+			Weapon->SetActorEnableCollision(true);
+		}
+	}
 }
 
 void UAttackNotifyState::NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float FrameDeltaTime)
 {
 	Super::NotifyTick(MeshComp, Animation, FrameDeltaTime);
-
+	/*
 	if (Owner != nullptr) {
 
 		if (Owner->IsA<APlayerCharacter>())
@@ -59,9 +68,18 @@ void UAttackNotifyState::NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSeque
 			}
 		}
 	}
+	*/
 }
 
 void UAttackNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
 	Super::NotifyEnd(MeshComp, Animation);
+	if (Owner != nullptr)
+	{
+		if (Owner->IsA<APlayerCharacter>())
+		{
+			Cast<APlayerCharacter>(Owner)->GetWeapon()->ClearHitActors();
+			Cast<APlayerCharacter>(Owner)->GetWeapon()->SetActorEnableCollision(false);
+		}
+	}
 }
